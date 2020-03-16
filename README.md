@@ -17,7 +17,7 @@ This POSTMAN environment and collection that can be used to interact with the Ci
 # Steps to execute APIs in the Postman Collection
 * Clone or Download the JSON files "CiscoSD-WAN-LocalPolicy.postman_collection.json" and "Cisco-SD-WAN-Environment.postman_environment.json"  
 * Import above files to the POSTMAN  
-* In the POSTMAN, make sure you set the environment as "Cisco-SD-WAN-Environment" in the top right corner![SelectEnvDetails](https://github.com/SaravananRamanathan25/....png)
+* In the POSTMAN, make sure you set the environment as "Cisco-SD-WAN-Environment" in the top right corner![SelectEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-Feature-Templates/blob/master/Images/SelectEnvDetails-Postman.png)
 * Go to Environment options and edit the vmanage, j_username, j_password and port details as per your own vmanage environment![EditEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-Feature-Templates/blob/master/Images/UpdateEnvDetails_Postman.png)
 * First execute the API under "SecurityPolicy\1.To Create List\1a.To Create Data Prefix List".
 * Next execute the API under "SecurityPolicy\1.To Create List\1b.To Create Zone List".
