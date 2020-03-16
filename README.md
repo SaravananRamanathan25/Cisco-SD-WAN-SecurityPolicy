@@ -38,12 +38,16 @@ This POSTMAN environment and collection that can be used to interact with the Ci
   * definitionId : templateId fetched from the fourth API
 * We have successfully created a Security Policy.
 
-| Local Policy Components | Cardinality for one instance of Local policy | Lists that can be used | Important Aspects |
+# Security Policy Components' Cardinality with Security Policy
+ 
+| Security Policy Lists | Cardinality for one instance of security policy | Lists that can be used | Important Aspects |
 | ----------------------- | -------------------------------------------- | ---------------------- | ----------------- |
-| QoS Map | 0..many | Class Map (Queue) |     |
-| Rewrite Rule | 0..many | Class Map (Class)      |      | 
-| ACL | 0..many | <p>Class Map (Match/Actions: Class)<br>DataPrefix (Match: Source/Destination IP Prefix)<br>Policer (Actions: Policer)<br>Mirror (Actions: Mirror)</p> | <ul><li>Variables are enabled only for the fields, Source IP Prefix and Destination IP Prefix</li><li>Single ACL Policy can have 0..many ACL Sequence</li><li>Single ACL Sequence can have 1..many Sequence Rules</li></ul> |
-| Route Policy | 0..many | <p>AS Path (Match: AS Path)<br>Community (Match: Community)<br>Extended Community (Match: Extended Community)<br>Prefix (Match: Address)</p> | <ul><li>Single Route Policy can have 0..many Sequence Types</li><li>Single Sequence Type can have 1..many Sequence Rules</li></ul> |	
+| Firewall | 0..many | <p>Data Prefix (Source/Desitination)<br>Zone (Soruce/Destination)<br><Application (Application/Application Family List </p> | 1. Variables are enabled only for the fields: Source IP Prefix and Destination IP Prefix<br>2. Application  Family list alone cannot be added in the sequence rule. If added, following error message appears: "Please add at least one of the remaining Match fields along with Application/Application Family List." |
+| Intrusion Prevention | 0..1 | Signatures (Signature Whitelist) | Container/UTD Image (Container Profile (Security App Hosting) additional Template which is child of Security Policy Template should also be selected for this - while associating the security policy with device Template) | 
+| URL Filtering | 0..1 | <p>Whitelist URLs (Whitelist URL List)<br>Blacklist URLs (Blacklist URL List)</p> | Container/UTD Image (Container Profile (Security App Hosting) additional Template which is child of Security Policy Template should also be selected for this - while associating the security policy with device Template) | 
+| Advanced Malware Protection | 0..1 | <p>Thread Grid API Key (this is not in List.  This is separate custom option)<br>**Region<br>**Key</p> | Container/UTD Image (Container Profile (Security App Hosting) additional Template which is child of Security Policy Template should also be selected for this - while associating the security policy with device Template) |
+| DNS Security | 0..1 | <p>Domain (Local Domain Bypass List)<br>Umbrella Registration (this is not in List.  This is separate custom option)<br>**Registration Token</p> | |
+
 
 # Security Policy and its related list/component - Delete Operations Analysis
 
