@@ -44,3 +44,11 @@ This POSTMAN environment and collection that can be used to interact with the Ci
 | Rewrite Rule | 0..many | Class Map (Class)      |      | 
 | ACL | 0..many | <p>Class Map (Match/Actions: Class)<br>DataPrefix (Match: Source/Destination IP Prefix)<br>Policer (Actions: Policer)<br>Mirror (Actions: Mirror)</p> | <ul><li>Variables are enabled only for the fields, Source IP Prefix and Destination IP Prefix</li><li>Single ACL Policy can have 0..many ACL Sequence</li><li>Single ACL Sequence can have 1..many Sequence Rules</li></ul> |
 | Route Policy | 0..many | <p>AS Path (Match: AS Path)<br>Community (Match: Community)<br>Extended Community (Match: Extended Community)<br>Prefix (Match: Address)</p> | <ul><li>Single Route Policy can have 0..many Sequence Types</li><li>Single Sequence Type can have 1..many Sequence Rules</li></ul> |	
+
+# Security Policy and its related list/component - Delete Operations Analysis
+
+| Level | Analysis |
+| ----------------------- | -------------------------------------------- |
+|List (3rd level) | 1. Cannot be deleted if it is referenced in any 2nd level policy.<br>2. Will not be auto deleted if the 2nd level parent policy is deleted. It has to be deleted manually.|
+|Individual Security Policy Lists (2nd Level)|1. Cannot be deleted if it is referenced in any 1st  level policy.<br>2. Will be auto deleted if all the 1st level parent policies are deleted.|
+|Higher Level Security Policies (1st Level)|1. It will delete all the referred 2nd level policies when it get deleted.<br>2. However, if any of the 2nd level policy is referenced in any other 1st level policy, then that 2nd level policy will not be deleted.|
