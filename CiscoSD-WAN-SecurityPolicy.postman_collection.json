@@ -1,0 +1,288 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CiscoSD-WAN-SecurityPolicy",
+		"_postman_id": "c0b9d175-1f69-2273-44d9-c9ce23c2589d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"description": "",
+			"item": [
+				{
+					"name": "Authentication",
+					"request": {
+						"url": "https://{{vmanage}}:{{port}}/j_security_check",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "j_username",
+									"value": "{{j_username}}",
+									"type": "text"
+								},
+								{
+									"key": "j_password",
+									"value": "{{j_password}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SecurityPolicy",
+			"description": "",
+			"item": [
+				{
+					"name": "1.To Create List",
+					"description": "",
+					"item": [
+						{
+							"name": "1a.To Create Data Prefix List",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/list/dataprefix",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"TestList-Dataprefix\",\n\t\"description\": \"TestList-Dataprefix\",\n\t\"type\": \"dataprefix\",\n\t\"entries\": [{\n\t\t\"ipPrefix\": \"10.44.177.0/24\"\n\t}]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "1b.To Create Zone List (source)",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/list/zone",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"TestList-sourceZone\",\n\t\"description\": \"TestList-sourceZone\",\n\t\"type\": \"zone\",\n\t\"listId\": null,\n\t\"entries\": [{\n\t\t\"vpn\": \"2\"\n\t},\n\t{\n\t\t\"vpn\": \"5\"\n\t}]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "1c.To Create Zone List (destination)",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/list/zone",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"TestList-destinationZone\",\n\t\"description\": \"TestList-destinationZone\",\n\t\"type\": \"zone\",\n\t\"listId\": null,\n\t\"entries\": [{\n\t\t\"vpn\": \"11\"\n\t},\n\t{\n\t\t\"vpn\": \"22\"\n\t}]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2.To Get List Reference",
+					"description": "",
+					"item": [
+						{
+							"name": "2a.To Get Data Prefix List",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/list/dataprefix",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "2b.To Get Zone List",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/list/zone",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3.To Create Policy Component",
+					"description": "",
+					"item": [
+						{
+							"name": "To Create Zone Based FW Policy Component",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/definition/zonebasedfw",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"TestPolicyComponent-ZoneBasedFW\",\n\t\"type\": \"zoneBasedFW\",\n\t\"description\": \"TestPolicyComponent-ZoneBasedFW\",\n\t\"definition\": {\n\t\t\"defaultAction\": {\n\t\t\t\"type\": \"drop\"\n\t\t},\n\t\t\"sequences\": [{\n\t\t\t\"sequenceId\": 1,\n\t\t\t\"sequenceName\": \"Default Action\",\n\t\t\t\"baseAction\": \"drop\",\n\t\t\t\"sequenceType\": \"zoneBasedFW\",\n\t\t\t\"match\": {\n\t\t\t\t\"entries\": [{\n\t\t\t\t\t\"field\": \"destinationDataPrefixList\",\n\t\t\t\t\t\"ref\": {{DataPrefix-listId}}\n\t\t\t\t}]\n\t\t\t},\n\t\t\t\"actions\": []\n\t\t}],\n\t\t\"entries\": [{\n\t\t\t\"sourceZone\": {{Zone(source)-listId}},\n\t\t\t\"destinationZone\": {{Zone(destination)-listId}}\n\t\t}]\n\t}\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4.To Get Definition Id of Policy Component",
+					"description": "",
+					"item": [
+						{
+							"name": "To Get Definition Id of Zone Based FW Policy Component",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/definition/zonebasedfw",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "5.To Create Security Policy",
+					"description": "",
+					"item": [
+						{
+							"name": "To Create Security Policy",
+							"request": {
+								"url": "https://{{vmanage}}:{{port}}/dataservice/template/policy/security/",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"policyName\": \"TestSecurityPolicy\",\n\t\"policyDescription\": \"TestSecurityPolicy\",\n\t\"policyType\": \"feature\",\n\t\"policyUseCase\": \"custom\",\n\t\"policyDefinition\": {\n\t\t\"assembly\": [\n\t\t{\n\t\t\t\"definitionId\": {{PolicyComponent-definitionId}},\n\t\t\t\"type\": \"zoneBasedFW\"\n\t\t}],\n\t\t\"settings\": {\n\t\t\t\"logging\": [{\n\t\t\t\t\"vpn\": \"2\",\n\t\t\t\t\"serverIP\": \"10.0.0.1\"\n\t\t\t}],\n\t\t\t\"failureMode\": \"open\",\n\t\t\t\"zoneToNozoneInternet\": \"allow\",\n\t\t\t\"tcpSynFloodLimit\": \"22\"\n\t\t}\n\t}\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
