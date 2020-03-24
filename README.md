@@ -17,25 +17,26 @@ This POSTMAN environment and collection that can be used to interact with the Ci
 # Steps to execute APIs in the Postman Collection
 * Clone or Download the JSON files "CiscoSD-WAN-LocalPolicy.postman_collection.json" and "Cisco-SD-WAN-Environment.postman_environment.json"  
 * Import above files to the POSTMAN  
-* In the POSTMAN, make sure you set the environment as "Cisco-SD-WAN-Environment" in the top right corner![SelectEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-Feature-Templates/blob/master/Images/SelectEnvDetails-Postman.png)
-* Go to Environment options and edit the vmanage, j_username, j_password and port details as per your own vmanage environment![EditEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-Feature-Templates/blob/master/Images/UpdateEnvDetails_Postman.png)
-* First execute the API under "SecurityPolicy\1.To Create List\1a.To Create Data Prefix List".
-* Next execute the API under "SecurityPolicy\1.To Create List\1b.To Create Zone List".
-* Next execute the API under "SecurityPolicy\1.To Create List\1c.To Create Local App List".
+* In the POSTMAN, make sure you set the environment as "Cisco-SD-WAN-Environment" in the top right corner![SelectEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/SelectEnvDetails-Postman.png)
+* Go to Environment options and edit the vmanage, j_username, j_password and port details as per your own vmanage environment. **User account should have write permission for the feature "Policy Configuration" Feature.**![EditEnvDetails](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/UpdateEnvDetails_Postman.png)
+* First execute the API under "Authentication\Authentication". This will make sure that you have logged into the vManage for that session.
+* Next execute the API under "SecurityPolicy\1.To Create List\1a.To Create Data Prefix List".
+* Next execute the API under "SecurityPolicy\1.To Create List\1b.To Create Zone List (source)".
+* Next execute the API under "SecurityPolicy\1.To Create List\1c.To Create Zone List (destination)".
 * Next execute the API under "SecurityPolicy\2.To Get List Reference\2a.To Get Data Prefix List".
-  * In the response payload, search with the list name and find its corresponding listId
+  * In the response payload, search with the list name and find its corresponding listId as shown below ![Get_DataPrefix](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_DataPrefix.png)
 * Next execute the API under "SecurityPolicy\2.To Get List Reference\2b.To Get Zone List".
-  * In the response payload, search with the list name and find its corresponding listId
-* Next execute the API under "SecurityPolicy\2.To Get List Reference\2c.To Get Local App List".
-  * In the response payload, search with the list name and find its corresponding app name
+  * In the response payload, search with the list name and find its corresponding listId as shown below ![Get_Zone](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_Zone.png). Note: Get the listId for both source and destination Zones created as part of 1b and 1c steps.
 * In order to execute the third API under "SecurityPolicy\3.To Create Policy Component\To Create Zone Based FW Policy Component", replace value for below parameter in the request body 
-  * sourceZone : listId fetched from the API 2b
-  * destinationZone : listId fetched from the API 2b
-  * ref : listId fetched from the API 2a
+  * DataPrefix-listId : listId fetched from the API 2a
+  * Zone(source)-listId : listId fetched from the API 2b
+  * Zone(destination)-listId : listId fetched from the API 2b
+  * After replacing above values, payload will somewhat look like as, ![Sample_PolicyComponent_Payload](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Sample_PolicyComponent_Payload.png)
 * Next execute the API under "SecurityPolicy\4.To Get Definition Id of Policy Component\To Get Definition Id of Zone Based FW Policy Component".
   * In the response payload, search with the Policy Component name and find its definitionId
 * In order to execute the fifth API under "SecurityPolicy\5.To Create Security Policy\To Create Security Policy", replace value for below parameter in the request body 
-  * definitionId : templateId fetched from the fourth API
+  * PolicyComponent-definitionId : templateId fetched from the fourth API
+  * After replacing above values, payload will somewhat look like as, ![Sample_Policy_Payload](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Sample_Policy_Payload.png)
 * We have successfully created a Security Policy.
 
 # Security Policy Components' Cardinality with Security Policy
