@@ -26,7 +26,8 @@ This POSTMAN environment and collection that can be used to interact with the Ci
 * Next execute the API under "SecurityPolicy\2.To Get List Reference\2a.To Get Data Prefix List".
   * In the response payload, search with the list name and find its corresponding listId as shown below ![Get_DataPrefix](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_DataPrefix.png)
 * Next execute the API under "SecurityPolicy\2.To Get List Reference\2b.To Get Zone List".
-  * In the response payload, search with the list name and find its corresponding listId as shown below ![Get_Zone](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_Zone.png). Note: Get the listId for both source and destination Zones created as part of 1b and 1c steps.
+  * In the response payload, search with the list name and find its corresponding listId as shown below ![Get_Zone](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_Zone.png) 
+  * Note: Get the listId for both source and destination Zones created as part of 1b and 1c steps.
 * In order to execute the third API under "SecurityPolicy\3.To Create Policy Component\To Create Zone Based FW Policy Component", replace value for below parameter in the request body 
   * DataPrefix-listId : listId fetched from the API 2a
   * Zone(source)-listId : listId fetched from the API 2b
