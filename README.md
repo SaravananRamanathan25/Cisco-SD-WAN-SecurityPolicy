@@ -34,7 +34,7 @@ This POSTMAN environment and collection that can be used to interact with the Ci
   * Zone(destination)-listId : listId fetched from the API 2b
   * After replacing above values, payload will somewhat look like as, ![Sample_PolicyComponent_Payload](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Sample_PolicyComponent_Payload.png)
 * Next execute the API under "SecurityPolicy\4.To Get Definition Id of Policy Component\To Get Definition Id of Zone Based FW Policy Component".
-  * In the response payload, search with the Policy Component name and find its definitionId
+  * In the response payload, search with the Policy Component name and find its definitionId as shown below ![Get_FW](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Get_FW.png)
 * In order to execute the fifth API under "SecurityPolicy\5.To Create Security Policy\To Create Security Policy", replace value for below parameter in the request body 
   * PolicyComponent-definitionId : templateId fetched from the fourth API
   * After replacing above values, payload will somewhat look like as, ![Sample_Policy_Payload](https://github.com/SaravananRamanathan25/Cisco-SD-WAN-SecurityPolicy/blob/master/Images/Sample_Policy_Payload.png)
